@@ -12,6 +12,7 @@
 -- Please place me in ServerScriptService
 
 -- Please report issues here, feel free to browse the code and even contribute if you want to help out! (https://github.com/RovolutionTeam/RovolutionAnalytica)
+-- Also the editor is here https://github.com/RovolutionTeam/RovolutionCDN/ but won't be updated much
 
 -- GeraldIn2016
 
