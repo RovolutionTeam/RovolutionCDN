@@ -1,0 +1,108 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<Meta name="ExplicitAutoJoints">true</Meta>
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Script" referent="RBX6443070B3C234E939917319DCAE56E04">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<bool name="Disabled">false</bool>
+			<Content name="LinkedSource"><null></null></Content>
+			<string name="Name">RovolutionLogisticsCDN</string>
+			<string name="ScriptGuid">{F3CCABF8-A39D-4B3D-939B-331E17B13263}</string>
+			<ProtectedString name="Source"><![CDATA[-- ______                _       _   _               _                 _     _   _          
+-- | ___ \              | |     | | (_)             | |               (_)   | | (_)         
+-- | |_/ /_____   _____ | |_   _| |_ _  ___  _ __   | |     ___   __ _ _ ___| |_ _  ___ ___ 
+-- |    // _ \ \ / / _ \| | | | | __| |/ _ \| '_ \  | |    / _ \ / _` | / __| __| |/ __/ __|
+-- | |\ \ (_) \ V / (_) | | |_| | |_| | (_) | | | | | |___| (_) | (_| | \__ \ |_| | (__\__ \
+-- \_| \_\___/ \_/ \___/|_|\__,_|\__|_|\___/|_| |_| \_____/\___/ \__, |_|___/\__|_|\___|___/
+--	                                                              __/ |                     
+--                                                               |___/                      
+
+-- Rovolution Logistics CDN provides a importer to load RovolutionLogistics in game tools and software
+
+-- Please place me in ServerScriptService!
+
+-- Please report issues here, feel free to browse the code and even contribute if you want to help out! (https://github.com/RovolutionTeam/RovolutionAnalytica)
+-- Also the loader is here https://github.com/RovolutionTeam/RovolutionCDN/ but won't be updated much due to it being basically done.
+
+-- GeraldIn2016 - CEO and Founder of Rovolution
+
+local warn = function(...)
+	warn(": Rovolution Logistics CDN :", ...)
+end
+
+warn("Loading...")
+
+-- Get Globals
+local API_KEY = script:FindFirstChild("API_KEY")
+local ProjectID = script:FindFirstChild("ProjectID")
+local HttpService = game:GetService("HttpService")
+
+-- Make block function
+do 
+	if API_KEY == nil or not API_KEY:IsA("StringValue") then
+		warn("No API_KEY or not a string value, RovolutionLogistics CDN can not function without it, aborting...")
+		return
+	end
+	if ProjectID == nil or not ProjectID:IsA("StringValue") then
+		warn("No ProjectID or not a string value, RovolutionLogistics CDN can not function without it, aborting...")
+		return
+	end
+	
+	-- All servies are running now lets fetch module ID and test for HTTP
+	local s, data = pcall(function()
+		return HttpService:JSONDecode(game:GetService('HttpService'):GetAsync('https://analytics.rovolution.me/api/v1/projectInfo/'..ProjectID.value.."?bearer_key="..API_KEY.Value))
+	end)
+	if s == false then
+		warn("Unable to connect to Rovolution, please check HTTP is turned on in game settings, aborting...")
+		return
+	end
+	
+	
+	if data.error ~= nil then
+		warn(data.error..", aborting...")
+		return
+	end
+
+	
+	-- Now fetch module from roblox, making moduleID a number as well
+	local module = require(tonumber(data.moduleID))
+	
+	
+	-- Lets now start the module, with projectID and api key
+	local errors = module.default(ProjectID.value, API_KEY.Value)
+
+	if errors == true then
+		warn("Failed to load RovolutionCDN module '"..data.moduleName.."' please check project ID and api key!")
+	end
+	
+	warn("Successfully loaded RovolutionCDN module '"..data.moduleName.."'!")
+	
+	-- Loader Finished
+	
+end
+
+]]></ProtectedString>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+		</Properties>
+		<Item class="StringValue" referent="RBX800A91F103784041BAFABDC163B1B2A2">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<string name="Name">ProjectID</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<string name="Value">TEST_PROJECT_ID</string>
+			</Properties>
+		</Item>
+		<Item class="StringValue" referent="RBXD7CBFF49D8784B23B4CEF6110C0246E3">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<string name="Name">API_KEY</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<string name="Value">TEST_API_KEY</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>
