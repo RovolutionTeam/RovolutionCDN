@@ -9,12 +9,12 @@
 
 -- Rovolution Logistics CDN provides a importer to load RovolutionLogistics in game tools and software
 
--- Please place me in ServerScriptService
+-- Please place me in ServerScriptService!
 
 -- Please report issues here, feel free to browse the code and even contribute if you want to help out! (https://github.com/RovolutionTeam/RovolutionAnalytica)
--- Also the editor is here https://github.com/RovolutionTeam/RovolutionCDN/ but won't be updated much
+-- Also the loader is here https://github.com/RovolutionTeam/RovolutionCDN/ but won't be updated much due to it being basically done.
 
--- GeraldIn2016
+-- GeraldIn2016 - CEO and Founder of Rovolution
 
 local warn = function(...)
 	warn(": Rovolution Logistics CDN :", ...)
@@ -67,8 +67,7 @@ do
 	
 	warn("Successfully loaded RovolutionCDN module '"..data.moduleName.."'!")
 	
--- Lodaer Finished
+	-- Loader Finished
 	
-	
-	script:Destroy()
 end
+
