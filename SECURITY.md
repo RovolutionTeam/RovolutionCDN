@@ -11,7 +11,7 @@
 
 Please open a issue with the format:
 - - -
-## Version - Obtainable from the error log 
-## Occured - Studio/Game/Website
-## Reproducable Steps - 
-## Additional Info -
+### Version - Obtainable from the error log 
+### Occured - Studio/Game/Website
+### Reproducable Steps - 
+### Additional Info -
